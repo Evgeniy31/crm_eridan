@@ -1,0 +1,5 @@
+- [x] Reorganize client request form into three blocks as specified
+  - [x] First block: Two columns (Organization Name/Phone in first, Name/Email in second)
+  - [x] Second block: Legal and Actual addresses
+  - [x] Third block: Three columns (Product fields in first, Additional product in second, Description/Deadline/Urgent in third)
+- [x] Test the form layout
