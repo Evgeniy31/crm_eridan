@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Детали заявки {{ request.request_number }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Детали заявки {{ request.request_number }}</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Информация о заявке</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p><strong>Номер заявки:</strong> {{ request.request_number }}</p>
+                            <p><strong>Клиент:</strong> {{ request.client_name }}</p>
+                            <p><strong>Телефон:</strong> {{ request.phone|default:"Не указан" }}</p>
+                            <p><strong>Организация:</strong> {{ request.organization_name|default:"Не указана" }}</p>
+                            <p><strong>Email:</strong> {{ request.client_email }}</p>
+                            <p><strong>Юридический адрес:</strong> {{ request.legal_address|default:"Не указан" }}</p>
+                            <p><strong>Фактический адрес:</strong> {{ request.actual_address|default:"Не указан" }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><strong>Описание:</strong> {{ request.description|default:"Не указано" }}</p>
+                            <p><strong>Срок изготовления:</strong> {{ request.deadline|date:"d.m.Y"|default:"Не указан" }}</p>
+                            <p><strong>Продукт:</strong> {{ request.product.name|default:"Не указан" }}</p>
+                            <p><strong>Тип продукта:</strong> {{ request.product_type|default:"Не указан" }}</p>
+                            <p><strong>Модификация:</strong> {{ request.modification|default:"Не указана" }}</p>
+                            <p><strong>Дополнительный продукт:</strong> {{ request.additional_product|default:"Не указан" }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Статус и исполнители</h5>
+                </div>
+                <div class="card-body">
+                    <p><strong>Статус:</strong>
+                        <span class="badge {% if request.status == 'new' %}bg-primary{% elif request.status == 'in_progress' %}bg-warning{% elif request.status == 'completed' %}bg-success{% else %}bg-danger{% endif %}">
+                            {{ request.get_status_display }}
+                        </span>
+                    </p>
+                    <p><strong>Менеджер:</strong> {{ request.manager.get_full_name|default:"Не назначен" }}</p>
+                    <p><strong>Исполнитель:</strong> {{ request.assigned_to.get_full_name|default:"Не назначен" }}</p>
+                    <p><strong>Одобрено начальником производства:</strong> {% if request.production_chief_approved %}Да{% else %}Нет{% endif %}</p>
+                    <p><strong>Дата создания:</strong> {{ request.created_at|date:"d.m.Y H:i" }}</p>
+                    <p><strong>Дата обновления:</strong> {{ request.updated_at|date:"d.m.Y H:i" }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a href="{% url 'requests:client_requests' %}" class="btn btn-secondary">Назад к списку</a>
+    </div>
+</div>
+{% endblock %}

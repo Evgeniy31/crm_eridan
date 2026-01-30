@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}Настройки - Администратор{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">Панель администратора</h1>
+
+    <div class="row">
+        <!-- Управление пользователями -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><i class="fas fa-users-cog"></i> Управление пользователями</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'users:user_list' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-list"></i> Просмотр всех пользователей
+                        </a>
+                        <a href="{% url 'users:user_create' %}" class="btn btn-outline-success">
+                            <i class="fas fa-user-plus"></i> Добавить пользователя
+                        </a>
+                        <a href="{% url 'users:user_permissions' %}" class="btn btn-outline-warning">
+                            <i class="fas fa-key"></i> Управление правами доступа
+                        </a>
+                        <a href="{% url 'users:user_list' %}" class="btn btn-outline-info">
+                            <i class="fas fa-edit"></i> Редактирование пользователей
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Управление заявками -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><i class="fas fa-clipboard-list"></i> Управление заявками</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'requests:client_requests' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-list"></i> Все заявки клиентов
+                        </a>
+                        <a href="{% url 'repairs:repair_requests' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-tools"></i> Заявки на ремонт
+                        </a>
+                        <a href="{% url 'requests:admin_request_management' %}" class="btn btn-outline-danger">
+                            <i class="fas fa-edit"></i> Полное управление заявками
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Управление клиентами -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><i class="fas fa-users"></i> Управление клиентами</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'requests:client_base' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-list"></i> Просмотр всех клиентов
+                        </a>
+                        <a href="{% url 'requests:client_create' %}" class="btn btn-outline-success">
+                            <i class="fas fa-user-plus"></i> Добавить клиента
+                        </a>
+                        <a href="{% url 'requests:admin_client_management' %}" class="btn btn-outline-danger">
+                            <i class="fas fa-edit"></i> Редактирование клиентов
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Система и настройки -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><i class="fas fa-cogs"></i> Система и настройки</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'requests:system_logs' %}" class="btn btn-outline-info">
+                            <i class="fas fa-file-alt"></i> Просмотр логов системы
+                        </a>
+                        <a href="{% url 'requests:backup_restore' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-database"></i> Резервное копирование
+                        </a>
+                        <a href="{% url 'requests:system_settings' %}" class="btn btn-outline-warning">
+                            <i class="fas fa-sliders-h"></i> Настройки системы
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Производство -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><i class="fas fa-industry"></i> Производство</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="/production/" class="btn btn-outline-primary">
+                            <i class="fas fa-industry"></i> Панель производства
+                        </a>
+                        <a href="{% url 'production:production_order_list' %}" class="btn btn-outline-info">
+                            <i class="fas fa-list"></i> Заказы на производство
+                        </a>
+                        <a href="{% url 'analytics:report_options' %}" class="btn btn-outline-success">
+                            <i class="fas fa-chart-line"></i> Отчеты производства
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Аналитика и отчеты -->
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><i class="fas fa-chart-bar"></i> Аналитика и отчеты</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'analytics:report_options' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-chart-bar"></i> Генерация отчетов
+                        </a>
+                        <a href="{% url 'analytics:dashboard' %}" class="btn btn-outline-info">
+                            <i class="fas fa-tachometer-alt"></i> Панель аналитики
+                        </a>
+                        <a href="{% url 'export_data' %}" class="btn btn-outline-success">
+                            <i class="fas fa-file-export"></i> Экспорт данных
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Статистика системы -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title"><i class="fas fa-chart-pie"></i> Статистика системы</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <h3 class="text-primary">{{ total_users|default:0 }}</h3>
+                            <p>Пользователей</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="text-success">{{ total_clients|default:0 }}</h3>
+                            <p>Клиентов</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="text-warning">{{ active_requests|default:0 }}</h3>
+                            <p>Активных заявок</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h3 class="text-info">{{ completed_requests|default:0 }}</h3>
+                            <p>Завершенных заявок</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
